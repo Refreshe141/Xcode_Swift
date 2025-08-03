@@ -1,0 +1,36 @@
+//
+//  ViewController.swift
+//  PickerView
+//
+//  Created by 김민혁 on 8/3/25.
+//
+
+import UIKit
+
+class ViewController: UIViewController UIPickerViewDelegate, UIPickerViewDataSource{
+    let MAX_ARRAY_NUM = 4
+    let PICKER_VIEW_COLUMN = 1
+    var imageFileName = ["img_1.jpg", "img_2.jpg", "img_3.jpg", "img_4.jpg"]
+    @IBOutlet var pickerImage: UIPickerView!
+    @IBOutlet var lblImageFileName: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    func numberofComponents(in pickerView: UIPickerView)
+    -> Int {
+        return PICKER_VIEW_COLUMN
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent: Int) -> Int{
+        return imageFileName.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) ->
+    String?{
+        return imageFileName[row]
+    }
+
+
+}
+
