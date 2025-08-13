@@ -1,1 +1,81 @@
 
+//
+//  ViewController.swift
+//  ㅈ
+//
+//  Created by 김민혁 on 8/13/25.
+//
+
+import UIKit
+import WebKit
+
+class ViewController: UIViewController {
+    
+    // textField
+    @IBOutlet var txtUrl: UITextField!
+    
+    // webView
+    @IBOutlet var myWebView: WKWebView!
+    
+    //load indicator
+    @IBOutlet var myActivityIndicator: UIActivityIndicatorView!
+    
+    //지정 왭 페이지 보여주기
+    func loadWebPage(_ url: String){
+        let myUrl = URL(string: url)
+        let myRequest = URLRequest(url: myUrl!)
+        myWebView.load(myRequest)
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        loadWebPage("https://github.com/Refreshe141")
+    }
+    
+    //btn Go
+    @IBAction func btnGotoUrl(_ sender: UIButton) {
+    }
+    
+    //btn Site1 (upSide)
+    @IBAction func btnGoSite1(_ sender: UIButton) {
+    }
+    
+    //btn Site2
+    @IBAction func btnGoSite2(_ sender: UIButton) {
+    }
+    
+    //btn HTML
+    @IBAction func btnLoadHtmlString(_ sender: UIButton) {
+        //here code
+    }
+    
+    //btn File
+    @IBAction func btnLoadHtmlFile(_ sender: UIButton) {
+        //here code
+    }
+    
+    //btnGO(downSide)
+    @IBAction func btnStop(_ sender: UIBarButtonItem) {
+    }
+    
+    //btnReload
+    @IBAction func btnReload(_ sender: UIBarButtonItem) {
+        // here code
+    }
+    
+    //btnGoBack
+    @IBAction func btnGoBack(_ sender: UIBarButtonItem) {
+        //here code
+    }
+    
+    //btnGoForward
+    @IBAction func btnGoForward(_ sender: UIBarButtonItem) {
+    }
+    
+    
+    
+    
+}
+
