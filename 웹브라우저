@@ -1,4 +1,3 @@
-
 //
 //  ViewController.swift
 //  ㅈ
@@ -9,7 +8,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
     
     // textField
     @IBOutlet var txtUrl: UITextField!
@@ -27,10 +26,24 @@ class ViewController: UIViewController {
         myWebView.load(myRequest)
         
     }
+    // 인디케이터 동작구현
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!){
+        myActivityIndicator.startAnimating()
+        myActivityIndicator.isHidden = false
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
+        myActivityIndicator.stopAnimating()
+        myActivityIndicator.isHidden = true
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error){
+        myActivityIndicator.stopAnimating()
+        myActivityIndicator.isHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        myWebView.navigationDelegate = self
         loadWebPage("https://github.com/Refreshe141")
     }
     
@@ -40,10 +53,12 @@ class ViewController: UIViewController {
     
     //btn Site1 (upSide)
     @IBAction func btnGoSite1(_ sender: UIButton) {
+        loadWebPage("https://www.naver.com")
     }
     
     //btn Site2
     @IBAction func btnGoSite2(_ sender: UIButton) {
+        loadWebPage("https://www.apple.com/kr/")
     }
     
     //btn HTML
@@ -79,3 +94,6 @@ class ViewController: UIViewController {
     
 }
 
+
+    
+   
