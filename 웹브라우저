@@ -17,7 +17,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet var myWebView: WKWebView!
     
     //load indicator
+    
     @IBOutlet var myActivityIndicator: UIActivityIndicatorView!
+
     
     //지정 왭 페이지 보여주기
     func loadWebPage(_ url: String){
@@ -53,17 +55,17 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     //btn Site1 (upSide)
     @IBAction func btnGoSite1(_ sender: UIButton) {
-        loadWebPage("https://www.naver.com")
-    }
+        loadWebPage("https://www.naver.com")    }
     
     //btn Site2
     @IBAction func btnGoSite2(_ sender: UIButton) {
-        loadWebPage("https://www.apple.com/kr/")
-    }
+        loadWebPage("https://www.apple.com/kr/")    }
     
     //btn HTML
     @IBAction func btnLoadHtmlString(_ sender: UIButton) {
         //here code
+        let htmlString = "<h1>HTML String</h1><p>String</p><p><a href=\"http://2sam.net\">2sam</a>으로 이동</p>"
+        myWebView.loadHTMLString(htmlString, baseURL: nil)
     }
     
     //btn File
@@ -93,6 +95,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     
 }
+
+  
+    
+    
+    
 
 
     
