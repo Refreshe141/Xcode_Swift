@@ -13,6 +13,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // textField
     @IBOutlet var txtUrl: UITextField!
     
+    
     // webView
     @IBOutlet var myWebView: WKWebView!
     
@@ -48,10 +49,22 @@ class ViewController: UIViewController, WKNavigationDelegate {
         myWebView.navigationDelegate = self
         loadWebPage("https://github.com/Refreshe141")
     }
+    //문자열 자동삽입기능
+    func checkUrl(_ url: String) -> String {
+        var strUrl = url
+        let flag = strUrl.hasPrefix("http://")
+        if !flag{
+            strUrl = "http://" + strUrl
+        }
+        return strUrl
+    }
     
     //btn Go
     @IBAction func btnGotoUrl(_ sender: UIButton) {
+        let myUrl = checkUrl(txtUrl.text!)
+        loadWebPage(myUrl)
     }
+    
     
     //btn Site1 (upSide)
     @IBAction func btnGoSite1(_ sender: UIButton) {
@@ -63,29 +76,61 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     //btn HTML
     @IBAction func btnLoadHtmlString(_ sender: UIButton) {
-        //here code
-        let htmlString = "<h1>HTML String</h1><p>String</p><p><a href=\"http://2sam.net\">2sam</a>으로 이동</p>"
+        let htmlString = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body {
+                    font-size: 150%;
+                    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+                    padding: 20px;
+                }
+                h1 {
+                    font-size: 200%;
+                }
+                a {
+                    color: blue;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>HTML String</h1>
+            <p>String 변수를 이용한 웹페이지</p>
+            <p><a href="http://2sam.net">2sam</a>으로 이동</p>
+        </body>
+        </html>
+        """
         myWebView.loadHTMLString(htmlString, baseURL: nil)
     }
+       
+    
     
     //btn File
     @IBAction func btnLoadHtmlFile(_ sender: UIButton) {
-        //here code
+        let filePath = Bundle.main.path(forResource: "htmlView", ofType: "html")
+        let myUrl = URL(fileURLWithPath: filePath!)
+        let myRequest = URLRequest(url: myUrl)
+        myWebView.load(myRequest)
+        
+        
     }
     
     //btnGO(downSide)
     @IBAction func btnStop(_ sender: UIBarButtonItem) {
     }
     
+    
     //btnReload
     @IBAction func btnReload(_ sender: UIBarButtonItem) {
-        // here code
     }
+    
     
     //btnGoBack
     @IBAction func btnGoBack(_ sender: UIBarButtonItem) {
-        //here code
     }
+    
     
     //btnGoForward
     @IBAction func btnGoForward(_ sender: UIBarButtonItem) {
@@ -94,9 +139,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     
     
+    
 }
 
-  
     
     
     
